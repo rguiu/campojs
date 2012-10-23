@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/vendor/modernizr-2.6.1.min.js"></script>
+    </head>
+    <body>
+      <!--[if lt IE 7]>
+          <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+      <![endif]-->
+
+      <!-- Add your site or application content here -->
+    <h1>Ejemplos de CampoJs</h1>
+    <p>Blah Blah</p>
+
+    <h2>Incluyendo toda la configuraci&oacute;n</h2>
+      <table>
+        <caption>Countries by some random data</caption>
+        <tr><th>Name</th><th>Size</th><th>Inhabitants</th></tr>
+        <tr class="cmp_bind" data-models='{"name":"countries", "url":"/rest/countries.json"}' data-each-country="countries.models" >
+         <td data-text="country.name">Wonderland</td>
+         <td data-text="country.size">20</td>
+         <td data-text="country.people">1235</td>
+       </tr>
+      </table>
+
+    <h2>Incluyendo toda la configuraci&oacute;n. (I passed the quota while trying)</h2>
+    <table>
+      <caption>Cities in a box</caption>
+      <tr><th>fcodeName</th><th>toponymName</th><th>countrycode</th></tr>
+      <tr class="cmp_bind" data-models='{"name":"cities", "url":"http://api.geonames.org__/citiesJSON?north=44.1&south=-9.9&east=-22.4&west=55.2&lang=de&username=demo", "nested":"geonames"}' data-each-city="cities.models" >
+         <td data-text="city.fcodeName">Wonderland</td>
+         <td data-text="city.toponymName">20</td>
+         <td data-text="city.countrycode">1235</td>
+      </tr>
+    </table>
+
+    <h2>Incluyendo toda la configuraci&oacute;n. Some tweets</h2>
+      <table>
+        <tr class="cmp_bind" data-models='{"name":"tweets", "url":"http://search.twitter.com/search.json?q=obama&callback=?", "nested":"results", "refresh":{"type":"pull","feq":10000}}' data-each-tweet="tweets.models" >
+         <td><img data-src="tweet.profile_image_url" alt="profile image"></td>
+         <td data-text="tweet.from_user">Wonderuser</td>
+         <td data-text="tweet.text">message</td>
+       </tr>
+      </table>
+
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+      <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.0.min.js"><\/script>')</script>
+      <script src="js/plugins.js"></script>
+      <script src="js/campo.js"></script>
+
+      <script src="https://raw.github.com/mikeric/rivets/master/lib/rivets.min.js"></script>
+      <script src="http://underscorejs.org/underscore-min.js"></script>
+      <script src="http://backbonejs.org/backbone-min.js"></script>
+    </body>
+</html>
