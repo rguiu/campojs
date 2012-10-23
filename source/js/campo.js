@@ -39,7 +39,9 @@ $(document).ready(function() {
             }
         }
     });
-
+    
+    $.ajaxSetup({ cache: false });
+    
     var CampoModel = Backbone.Model.extend({
       // initialize: function(attributes, element) {
       //   this.id      = attributes.id;
@@ -75,7 +77,6 @@ $(document).ready(function() {
         }
       },
       display: function() {
-        console.log("Display: "+this.name);
         this.fetch({async: true});
         if (this.refresh !== undefined && this.refresh.feq > 0) {
             var instance = this;
@@ -106,24 +107,4 @@ $(document).ready(function() {
             cml.display();
         }
     });
-
-
-
-    // this should be searched through the DOM
-    
-
-    // var models = new CampoModelList();
-
-    // var countries_tmpl2 = get_template("#countries_2");
-    // var view_demo2 = rivets.bind(countries_tmpl2, { country_list: models });
-
-    // var updater = function(){
-    //     console.log("updating");
-    //     models.fetch({async: true});
-    //     setTimeout(function(){updater()}, 2500);
-    // };
-
-    // updater();
-
-
 });
