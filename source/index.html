@@ -29,18 +29,30 @@
       <table>
         <caption>Countries by some random data</caption>
         <tr><th>Name</th><th>Size</th><th>Inhabitants</th></tr>
-        <tr class="cmp_bind" data-models='{"name":"countries", "url":"/rest/countries.json"}' data-each-country="countries.models" >
+        <tr class="cmp_bind" data-models='{"name":"countries", "refresh":{"type":"pull","feq":2000}, "url":"/rest/countries.json"}' data-each-country="countries.models" >
          <td data-text="country.name">Wonderland</td>
          <td data-text="country.size">20</td>
          <td data-text="country.people">1235</td>
        </tr>
       </table>
 
+    <h2>Incluyendo toda la configuraci&oacute;n</h2>
+      <table>
+        <caption>Countries by some random data</caption>
+        <tr><th>Name</th><th>Size</th><th>Inhabitants</th></tr>
+        <tr class="cmp_bind" data-models='{"name":"countries2", "url":"/rest/countries.json"}' data-each-country="countries2.models" >
+         <td data-text="country.name">Wonderland</td>
+         <td data-text="country.size">20</td>
+         <td data-text="country.people">1235</td>
+       </tr>
+      </table>
+
+
     <h2>Incluyendo toda la configuraci&oacute;n. (I passed the quota while trying)</h2>
     <table>
       <caption>Cities in a box</caption>
       <tr><th>fcodeName</th><th>toponymName</th><th>countrycode</th></tr>
-      <tr class="cmp_bind" data-models='{"name":"cities", "url":"http://api.geonames.org__/citiesJSON?north=44.1&south=-9.9&east=-22.4&west=55.2&lang=de&username=demo", "nested":"geonames"}' data-each-city="cities.models" >
+      <tr class="cmp_bind" data-models='{"name":"cities", "url":"http://api.geonames.org/citiesJSON?north=44.1&south=-9.9&east=-22.4&west=55.2&lang=de&username=demo", "nested":"geonames"}' data-each-city="cities.models" >
          <td data-text="city.fcodeName">Wonderland</td>
          <td data-text="city.toponymName">20</td>
          <td data-text="city.countrycode">1235</td>
@@ -49,10 +61,11 @@
 
     <h2>Incluyendo toda la configuraci&oacute;n. Some tweets</h2>
       <table>
-        <tr class="cmp_bind" data-models='{"name":"tweets", "url":"http://search.twitter.com/search.json?q=obama&callback=?", "nested":"results", "refresh":{"type":"pull","feq":10000}}' data-each-tweet="tweets.models" >
+        <tr class="cmp_bind" data-models='{"name":"tweets", "url":"http://search.twitter.com/search.json?q=obama&callback=?", "nested":"results", "refresh":{"type":"pull","feq":100000}}' data-each-tweet="tweets.models" >
          <td><img data-src="tweet.profile_image_url" alt="profile image"></td>
          <td data-text="tweet.from_user">Wonderuser</td>
          <td data-text="tweet.text">message</td>
+         <td data-text="tweet.id">id</td>
        </tr>
       </table>
 
