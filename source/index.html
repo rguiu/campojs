@@ -52,7 +52,7 @@
     <table>
       <caption>Cities in a box</caption>
       <tr><th>fcodeName</th><th>toponymName</th><th>countrycode</th></tr>
-      <tr class="cmp_bind" data-models='{"name":"cities", "url":"http://api.geonames.org/citiesJSON?north=44.1&south=-9.9&east=-22.4&west=55.2&lang=de&username=demo", "nested":"geonames"}' data-each-city="cities.models" >
+      <tr class="_cmp_bind" data-models='{"name":"cities", "url":"http://api.geonames.org/citiesJSON?north=44.1&south=-9.9&east=-22.4&west=55.2&lang=de&username=demo", "nested":"geonames"}' data-each-city="cities.models" >
          <td data-text="city.fcodeName">Wonderland</td>
          <td data-text="city.toponymName">20</td>
          <td data-text="city.countrycode">1235</td>
@@ -69,6 +69,11 @@
        </tr>
       </table>
 
+    <h2>Tumblr</h2>
+      <article class="cmp_bind" data-models='{"name":"tumblr_posts", "url":"http://api.tumblr.com/v2/blog/peacecorps.tumblr.com/posts/text?api_key=PyezS3Q4Smivb24d9SzZGYSuhMNPQUhMsVetMC9ksuGPkK1BTt&notes_info=true&callback=?", "nested":"response.posts"}' data-each-post="tumblr_posts.models" >
+          <h2 data-text="post.title">Title</h2>
+          <div data-html="post.body">Body</div>
+      </article>​
 
       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
       <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.0.min.js"><\/script>')</script>

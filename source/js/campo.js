@@ -73,7 +73,7 @@ $(document).ready(function() {
         if (this.nested === undefined) {
             return response;
         } else {
-            return response[this.nested];
+            return eval("response."+this.nested);
         }
       },
       display: function() {
