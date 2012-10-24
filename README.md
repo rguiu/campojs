@@ -9,6 +9,15 @@ This is work in progress.
 
 ## Usage: ##
 
+### Install ###
+
+The javascript is under soource/js/campo.js. It needs to be included with rivets.js, jquery, backbonejs. The jsfiddleabove is a good example (check the "managed resources" in the left hand side)
+
+To run the project locally with the examples, to help to improve the library or to test it you must use middleman, http://middlemanapp.com/getting-started/welcome/. To tun it just use:
+
+	bundle exec middleman server
+
+### Syntax of the data arguments in HTML ###
 	class="cmp_bind"
 Declares this element as "bindable"
 
