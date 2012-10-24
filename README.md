@@ -2,8 +2,9 @@
 
 Bind json services into html using data-arguments 
 
-See this example:
-http://jsfiddle.net/MWcbh/3/
+See these examples:
+http://jsfiddle.net/avempace/6tfjy/1/
+http://jsfiddle.net/avempace/WNrdz/1/
 
 This is work in progress.
 
