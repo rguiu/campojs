@@ -1,0 +1,12 @@
+{"query":{"count":5,"created":"2012-10-25T20:54:46Z","lang":"en-US","diagnostics":
+	{"publiclyCallable":"true","url":{"execution-start-time":"1","execution-stop-time":"3","execution-time":"2",
+		"content":"http://download.finance.yahoo.com/d/quotes.csv?s=INFY.BO,RELIANCE.NS,TCS.BO,YHOO,GOOG&f=sl1d1t1c1ohgv&e=.csv"},
+		"user-time":"3","service-time":"2","build-version":"31071"},"results":{"row":[{"symbol":"INFY.BO","price":"2349.95",
+		"date":"10/25/2012","time":"6:15am","change":"-7.3501","col1":"2347.00","high":"2355.00","low":"2431.6499",
+		"col2":"302782"},
+	{"symbol":"RELIANCE.NS","price":"811.40","date":"10/25/2012","time":"6:27am","change":"+0.45","col1":"810.10",
+		"high":"818.70","low":"807.20","col2":"4127449"},{"symbol":"TCS.BO","price":"1315.90","date":"10/25/2012",
+		"time":"6:16am","change":"+2.60","col1":"1314.15","high":"1323.80","low":"1304.00","col2":"71131"},
+	{"symbol":"YHOO","price":"16.71","date":"10/25/2012","time":"4:00pm","change":"+0.06","col1":"16.70","high":"16.77",
+		"low":"16.49","col2":"23070552"},{"symbol":"GOOG","price":"677.76","date":"10/25/2012","time":"4:00pm",
+		"change":"+0.4578","col1":"680.00","high":"682.00","low":"673.51","col2":"2382965"}]}}}
