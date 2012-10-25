@@ -92,7 +92,21 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+.changedUp {
+  background: #9c3;
+}
 
+.changedDown {
+  background: #c33;
+}
+
+td {
+  border: solid 1px; 
+  background: #fff; 
+  -webkit-transition-property: background;
+  -webkit-transition-duration: 2s;
+  -webkit-transition-timing-function: ease;
+}
 
 
 

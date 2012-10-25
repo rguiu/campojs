@@ -4,11 +4,11 @@ $(document).ready(function() {
             subscribe: function(obj, keypath, callback) {
                 if (obj instanceof Backbone.Collection) {
                     obj.on('add remove reset', function() {
-                        callback(obj[keypath])
+                        callback(obj[keypath]);
                     });
                 } else {
                     obj.on('change:' + keypath, function(m, v) {
-                        callback(v)
+                        callback(v);
                     });
                 };
             },
@@ -16,10 +16,10 @@ $(document).ready(function() {
                 if (obj instanceof Backbone.Collection) {
                     obj.off('add remove reset', function() {
                         callback(obj[keypath])
-                    });
+                    })
                 } else {
                     obj.off('change:' + keypath, function(m, v) {
-                        callback(v)
+                        callback(v);
                     });
                 };
             },
@@ -39,25 +39,36 @@ $(document).ready(function() {
             }
         }
     });
-    
+
+    rivets.binders.changeupdown =  {
+      publishes: true,
+      bind: function(el) {
+        console.log("bind");      
+      },
+      unbind: function(el) {
+        console.log("unbind");   
+      }, 
+      routine: function(el, value) {
+        if (this.model._previousAttributes[this.keypath]!== undefined) {
+          var up = this.model._previousAttributes[this.keypath] < value;
+          var down = this.model._previousAttributes[this.keypath] > value;
+          if (up == true) {
+            $(el).addClass("changedUp");
+            setTimeout(function(){$(el).removeClass("changedUp");}, 10000);
+          } else if (down == true) {
+            $(el).addClass("changedDown");
+            setTimeout(function(){$(el).removeClass("changedDown");}, 10000);
+          }
+        } else {
+          console.log("First pass");
+        }
+        console.log("routine: "+value);   
+      }
+    };
+
     $.ajaxSetup({ cache: false });
-    
+
     var CampoModel = Backbone.Model.extend({
-      // initialize: function(attributes, element) {
-      //   this.id      = attributes.id;
-      //   this.name    = attributes.name;
-      //   this.url     = attributes.url || "/rest/"+this.name+"/"+this.id+".json";
-      //   this.refresh = attributes.refresh;
-      //   this.el      = element;
-      //   this.nested  = attributes.nested;
-      // }, 
-      // parse: function(response, xhr) {  
-      //   if (this.nested === undefined) {
-      //       return response;
-      //   } else {
-      //       return response[this.nested];
-      //   }
-      // }
     }); 
 
     var CampoModelList = Backbone.Collection.extend({
@@ -77,11 +88,66 @@ $(document).ready(function() {
         }
       },
       display: function() {
-        this.fetch({async: true});
+        var options = {async: true};
         if (this.refresh !== undefined && this.refresh.feq > 0) {
             var instance = this;
+            if (instance.refresh.mode !== undefined) {
+              options[instance.refresh.mode] = true;
+            }
             setTimeout(function(){instance.display()}, instance.refresh.feq);
+
         }
+        this.fetchOrUpdate(options);
+      },
+      // See: https://github.com/documentcloud/backbone/pull/446 
+      // you can do in-place updates of these models, reusing existing instances.
+      // - Items are matched against existing items in the collection by id
+      // - New items are added
+      // - matching models are updated using set(), triggers 'change'.
+      // - existing models not present in the update are removed if 'removeMissing' is passed.
+      // - a collection change event will be dispatched for each add() and remove()
+      update : function(models, options) {
+        models  || (models = []);
+        options || (options = {});
+
+        //keep track of the models we've updated, cause we're gunna delete the rest if 'removeMissing' is set.
+        var updateMap = _.reduce(this.models, function(map, model){ map[model.id] = false; return map },{});
+
+        _.each( models, function(model) {
+
+          var idAttribute = this.model.prototype.idAttribute;
+          var modelId = model[idAttribute];
+
+          if ( modelId == undefined ) throw new Error("Can't update a model with no id attribute. Please use 'reset'.");
+          
+          if ( this._byId[modelId] ) {
+            var attrs = (model instanceof Backbone.Model) ? _.clone(model.attributes) : _.clone(model);
+            delete attrs[idAttribute];
+            this._byId[modelId].set( attrs );
+            updateMap[modelId] = true;
+          }
+          else {
+            this.add( model );
+          }
+        }, this);
+
+        if ( options.removeMissing ) {
+          _.select(updateMap, function(updated, modelId){
+            if (!updated) this.remove( modelId );
+          }, this);
+        }
+        return this;
+      },
+      fetchOrUpdate : function(options) {
+        options || (options = {});
+        var collection = this;
+        var success = options.success;
+        options.success = function(resp, status, xhr) {
+          collection[options.update ? 'update' : options.add ? 'add' : 'reset'](collection.parse(resp, xhr), options);
+          if (success) success(collection, resp);
+        };
+        options.error = Backbone.wrapError(options.error, collection, options);
+        return (this.sync || Backbone.sync).call(this, 'read', this, options);
       }
     });
 

@@ -29,9 +29,9 @@
       <table>
         <caption>Countries by some random data</caption>
         <tr><th>Name</th><th>Size</th><th>Inhabitants</th></tr>
-        <tr class="cmp_bind" data-models='{"name":"countries", "refresh":{"type":"pull","feq":2000}, "url":"/rest/countries.json"}' data-each-country="countries.models" >
+        <tr class="cmp_bind" data-models='{"name":"countries", "refresh":{"type":"pull","feq":5000, "mode":"update"}, "url":"/rest/countries.json"}' data-each-country="countries.models" >
          <td data-text="country.name">Wonderland</td>
-         <td data-text="country.size">20</td>
+         <td data-changeupdown="country.size" data-text="country.size">20</td>
          <td data-text="country.people">1235</td>
        </tr>
       </table>
@@ -61,7 +61,7 @@
 
     <h2>Incluyendo toda la configuraci&oacute;n. Some tweets</h2>
       <table>
-        <tr class="cmp_bind" data-models='{"name":"tweets", "url":"http://search.twitter.com/search.json?q=obama&callback=?", "nested":"results", "refresh":{"type":"pull","feq":100000}}' data-each-tweet="tweets.models" >
+        <tr class="cmp_bind" data-models='{"name":"tweets", "url":"http://search.twitter.com/search.json?q=obama&callback=?", "nested":"results", "refresh":{"type":"pull","feq":900000}}' data-each-tweet="tweets.models" >
          <td><img data-src="tweet.profile_image_url" alt="profile image"></td>
          <td data-text="tweet.from_user">Wonderuser</td>
          <td data-text="tweet.text">message</td>
@@ -88,7 +88,7 @@
               <th>low</th>
               <th>col2</th>
           </tr>
-        <tr class="cmp_bind" data-models='{"name":"stocks", "url":"http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20csv%20where%20url%3D\"http%3A%2F%2Fdownload.finance.yahoo.com%2Fd%2Fquotes.csv%3Fs%3DINFY.BO%2CRELIANCE.NS%2CTCS.BO%2CBBVA%2CSAN%26f%3Dsl1d1t1c1ohgv%26e%3D.csv\"%20and%20columns%3D\"symbol%2Cprice%2Cdate%2Ctime%2Cchange%2Ccol1%2Chigh%2Clow%2Ccol2\"&format=json&diagnostics=true&callback=", "nested":"query.results.row", "refresh":{"type":"pull","feq":5000}}' data-each-stock="stocks.models" >
+        <tr class="cmp_bind" data-models='{"name":"stocks", "url":"http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20csv%20where%20url%3D\"http%3A%2F%2Fdownload.finance.yahoo.com%2Fd%2Fquotes.csv%3Fs%3DINFY.BO%2CRELIANCE.NS%2CTCS.BO%2CBBVA%2CSAN%26f%3Dsl1d1t1c1ohgv%26e%3D.csv\"%20and%20columns%3D\"symbol%2Cprice%2Cdate%2Ctime%2Cchange%2Ccol1%2Chigh%2Clow%2Ccol2\"&format=json&diagnostics=true&callback=", "nested":"query.results.row", "refresh":{"type":"pull","feq":500000}}' data-each-stock="stocks.models" >
          <td data-text="stock.symbol"></td>
          <td data-text="stock.price"></td>
          <td data-text="stock.date"></td>
@@ -105,9 +105,8 @@
       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
       <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.0.min.js"><\/script>')</script>
       <script src="js/plugins.js"></script>
+      <script src="https://raw.github.com/mikeric/rivets/master/lib/rivets.js"></script>
       <script src="js/campo.js"></script>
-
-      <script src="https://raw.github.com/mikeric/rivets/master/lib/rivets.min.js"></script>
       <script src="http://underscorejs.org/underscore-min.js"></script>
       <script src="http://backbonejs.org/backbone-min.js"></script>
     </body>
