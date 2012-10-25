@@ -42,12 +42,6 @@ $(document).ready(function() {
 
     rivets.binders.changeupdown =  {
       publishes: true,
-      bind: function(el) {
-        console.log("bind");      
-      },
-      unbind: function(el) {
-        console.log("unbind");   
-      }, 
       routine: function(el, value) {
         if (this.model._previousAttributes[this.keypath]!== undefined) {
           var up = this.model._previousAttributes[this.keypath] < value;
@@ -59,10 +53,7 @@ $(document).ready(function() {
             $(el).addClass("changedDown");
             setTimeout(function(){$(el).removeClass("changedDown");}, 10000);
           }
-        } else {
-          console.log("First pass");
-        }
-        console.log("routine: "+value);   
+        }  
       }
     };
 
