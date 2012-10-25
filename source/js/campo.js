@@ -33,7 +33,7 @@ $(document).ready(function() {
             publish: function(obj, keypath, value) {
                 if (obj instanceof Backbone.Collection) {
                     obj[keypath] = value;
-                } else {
+                } else {              
                     obj.set(keypath, value);
                 };
             }
@@ -48,10 +48,10 @@ $(document).ready(function() {
           var down = this.model._previousAttributes[this.keypath] > value;
           if (up == true) {
             $(el).addClass("changedUp");
-            setTimeout(function(){$(el).removeClass("changedUp");}, 10000);
+            setTimeout(function(){$(el).removeClass("changedUp");}, 8000);
           } else if (down == true) {
             $(el).addClass("changedDown");
-            setTimeout(function(){$(el).removeClass("changedDown");}, 10000);
+            setTimeout(function(){$(el).removeClass("changedDown");}, 8000);
           }
         }  
       }
@@ -70,6 +70,12 @@ $(document).ready(function() {
         this.refresh = attributes.refresh;
         this.el      = element;
         this.nested  = attributes.nested;
+        if (this.refresh.idattribute !== undefined) {
+          var ia = this.refresh.idattribute;
+          this.model = CampoModel.extend({
+            idAttribute: ia
+          });
+        }
       },
       parse: function(response, xhr) {
         if (this.nested === undefined) {
@@ -85,6 +91,10 @@ $(document).ready(function() {
             if (instance.refresh.mode !== undefined) {
               options[instance.refresh.mode] = true;
             }
+            // if (instance.refresh.idattribute !== undefined) {
+            //   console.log("idattr: "+ instance.refresh.idattribute)
+            //   this.idAttribute = instance.refresh.idattribute;
+            // }
             setTimeout(function(){instance.display()}, instance.refresh.feq);
 
         }

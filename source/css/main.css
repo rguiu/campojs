@@ -100,6 +100,10 @@ textarea {
   background: #c33;
 }
 
+td:hover {
+   background: #c33;
+}
+
 td {
   border: solid 1px; 
   background: #fff; 
