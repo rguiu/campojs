@@ -70,7 +70,7 @@ $(document).ready(function() {
         this.refresh = attributes.refresh;
         this.el      = element;
         this.nested  = attributes.nested;
-        if (this.refresh.idattribute !== undefined) {
+        if (this.refresh !== undefined && this.refresh.idattribute !== undefined) {
           var ia = this.refresh.idattribute;
           this.model = CampoModel.extend({
             idAttribute: ia
