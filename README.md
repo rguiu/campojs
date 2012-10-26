@@ -3,10 +3,15 @@
 Bind json services into html using data-arguments 
 
 See these examples:
-http://jsfiddle.net/avempace/6tfjy/1/
-http://jsfiddle.net/avempace/WNrdz/1/
 
-This is work in progress.
+* Yahoo Finance APi - Live prices (pull)
+http://jsfiddle.net/avempace/7uDWZ/2/
+
+* Twitter API
+http://jsfiddle.net/avempace/VD952/1/
+
+* Tumblr API
+http://jsfiddle.net/avempace/WNrdz/2/
 
 ## Usage: ##
 
